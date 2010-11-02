@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/widget28"
+android:layout_width="386px"
+android:layout_height="70px"
+android:text="GET CONNECTED!"
+android:textSize="40sp"
+android:textStyle="bold"
+android:layout_x="46px"
+android:layout_y="55px"
+>
+</TextView>
+<EditText
+android:id="@+id/widget29"
+android:layout_width="297px"
+android:layout_height="56px"
+android:textSize="18sp"
+android:layout_x="94px"
+android:layout_y="179px"
+>
+</EditText>
+<EditText
+android:id="@+id/widget31"
+android:layout_width="291px"
+android:layout_height="60px"
+android:textSize="18sp"
+android:layout_x="94px"
+android:layout_y="306px"
+>
+</EditText>
+<Button
+android:id="@+id/widget32"
+android:layout_width="163px"
+android:layout_height="116px"
+android:text="Customize Further"
+android:layout_x="33px"
+android:layout_y="452px"
+>
+</Button>
+<Button
+android:id="@+id/widget33"
+android:layout_width="171px"
+android:layout_height="119px"
+android:text="Start Communicating"
+android:layout_x="270px"
+android:layout_y="451px"
+>
+</Button>
+<TextView
+android:id="@+id/widget54"
+android:layout_width="192px"
+android:layout_height="43px"
+android:text="Enter a name"
+android:gravity="center"
+android:layout_x="146px"
+android:layout_y="235px"
+>
+</TextView>
+<TextView
+android:id="@+id/widget55"
+android:layout_width="158px"
+android:layout_height="57px"
+android:text="Enter a password"
+android:gravity="center"
+android:layout_x="154px"
+android:layout_y="368px"
+>
+</TextView>
+</AbsoluteLayout>
