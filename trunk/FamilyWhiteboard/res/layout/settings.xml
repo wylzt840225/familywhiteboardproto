@@ -1,8 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-android:id="@+id/widget71"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#fff"
 >
-</LinearLayout>
+  <TextView android:id="@+id/header"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Settings"
+    android:background="#c0c0c0"
+    android:textColor="#000"
+    android:layout_y="0px"
+    android:layout_x="0px">
+  </TextView>
+
+  <TextView android:id="@+id/yourProfile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Your Profile"
+    android:layout_y="30px"
+    android:layout_x="20px"
+    android:textColor="#000"
+    android:textSize="18px"
+    >
+  </TextView>
+
+  <TextView android:id="@+id/name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Name"
+    android:layout_y="60px"
+    android:layout_x="30px"
+    android:textColor="#000"
+    android:background="#c0c0c0"
+    android:textSize="18px">
+  </TextView>
+  
+  <EditText android:id="@+id/nameEdit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="10px"
+    android:text="sdf"
+    android:layout_y="59px"
+    android:layout_x="130px"
+    android:textColor="#000"
+    android:background="#c0c0c0">
+  </EditText>
+
+
+<TextView android:id="@+id/password"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Password"
+    android:layout_y="100px"
+    android:layout_x="30px"
+    android:textColor="#000"
+    android:background="#c0c0c0"
+    android:textSize="18px">
+  </TextView>
+  
+  <EditText android:id="@+id/passwordEdit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="10px"
+    android:text="sdf"
+    android:layout_y="102px"
+    android:layout_x="130px"
+    android:textColor="#000"
+    android:background="#c0c0c0"
+    android:password="true">
+  </EditText>
+
+<ImageView android:id="@+id/profilePicture"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_y="130px"
+    android:layout_x="30px"
+    android:src="@drawable/profilePicture">
+  </ImageView>
+  
+  <Button android:id="@+id/profilePictureEdit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16px"
+    android:text="sdf"
+    android:background="#c0c0c0"
+    android:textColor="#000"
+    android:layout_y="132px"
+    android:layout_x="130px">
+  </Button>
+  
+  <TextView android:id="@+id/yourGroups"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Your Groups"
+    android:layout_y="190px"
+    android:layout_x="20px"
+    android:textColor="#000"
+    android:textSize="18px"
+    >
+  </TextView>
+  
+  <ImageView android:id="@+id/groupsIcon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_y="220px"
+    android:layout_x="30px"
+    android:src="@drawable/groupsIcon">
+  </ImageView>
+  
+  <Button android:id="@+id/groupsEdit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16px"
+    android:text="Create a New Group"
+    android:background="#c0c0c0"
+    android:textColor="#000"
+    android:layout_y="220px"
+    android:layout_x="90px">
+  </Button>
+  
+</AbsoluteLayout>
