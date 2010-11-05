@@ -13,15 +13,16 @@ public class GroupSettings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         
-        //Button profilePictureEdit = (Button) findViewById(R.id.profilePictureEdit);
-        //Button groupsEdit = (Button) findViewById(R.id.groupsEdit);
+        Button invite = (Button) findViewById(R.id.invite);
+        Button save = (Button) findViewById(R.id.saveIcon);
+        Button cancel = (Button) findViewById(R.id.cancelIcon);
         
-        //profilePictureEdit.setOnClickListener(pictureListen);
-        //groupsEdit.setOnClickListener(groupsListen);
-        
+        invite.setOnClickListener(inviteListen);
+        save.setOnClickListener(saveListen);
+        cancel.setOnClickListener(cancelListen);
     }
     
-    private OnClickListener pictureListen = new OnClickListener(){
+    private OnClickListener inviteListen = new OnClickListener(){
     	public void onClick(View v)
 		{
     		 //Intent myIntent = new Intent(v.getContext(), SignUp.class);
@@ -29,10 +30,19 @@ public class GroupSettings extends Activity {
 		}
     };
     
-    private OnClickListener groupsListen = new OnClickListener(){
+    private OnClickListener saveListen = new OnClickListener(){
     	public void onClick(View v)
 		{
     		//
 		}
     };
+    
+    private OnClickListener cancelListen = new OnClickListener(){
+    	public void onClick(View v)
+		{
+    		//
+		}
+    };
+    
+
 }
