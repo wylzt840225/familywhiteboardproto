@@ -78,7 +78,7 @@
     android:layout_height="wrap_content"
     android:layout_y="130px"
     android:layout_x="30px"
-    android:src="@drawable/profilePicture">
+    android:src="@drawable/profilepicture">
   </ImageView>
   
   <Button android:id="@+id/profilePictureEdit"
@@ -108,7 +108,7 @@
     android:layout_height="wrap_content"
     android:layout_y="220px"
     android:layout_x="30px"
-    android:src="@drawable/groupsIcon">
+    android:src="@drawable/groupsicon">
   </ImageView>
   
   <Button android:id="@+id/groupsEdit"
