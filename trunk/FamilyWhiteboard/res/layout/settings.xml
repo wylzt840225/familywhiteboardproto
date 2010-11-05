@@ -17,6 +17,21 @@
     android:gravity="center_vertical">
   </TextView>
 
+  <ImageView android:id="@+id/saveIcon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_y="1px"
+    android:layout_x="420px"
+    android:src="@drawable/save">
+  </ImageView>  
+  <ImageView android:id="@+id/cancelIcon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_y="1px"
+    android:layout_x="450px"
+    android:src="@drawable/cancel">
+  </ImageView>  
+  
   <TextView android:id="@+id/yourProfile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -126,19 +141,5 @@
     android:layout_x="90px">
   </Button>
   
-  <ImageView android:id="@+id/saveIcon"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_y="1px"
-    android:layout_x="420px"
-    android:src="@drawable/save">
-  </ImageView>  
-  <ImageView android:id="@+id/cancelIcon"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_y="1px"
-    android:layout_x="450px"
-    android:src="@drawable/cancel">
-  </ImageView>  
   
 </AbsoluteLayout>
