@@ -25,7 +25,7 @@ public class SignUp extends Activity {
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
 	
-	
+
 	}
 	
 	
