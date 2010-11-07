@@ -19,7 +19,7 @@ public class Settings extends Activity {
     int GROUPS_INTENT = 1;
     
     public static final String PREFS_NAME = "MyPrefsFile";
-    boolean DEBUG = true;
+    public static final boolean DEBUG = true;
     public static String userName = "";
     EditText nameEdit;
 
