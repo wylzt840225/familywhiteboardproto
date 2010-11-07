@@ -17,20 +17,20 @@
     android:gravity="center_vertical">
   </TextView>
   
-  <ImageView android:id="@+id/saveIcon"
+  <Button android:id="@+id/saveIcon2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_y="1px"
     android:layout_x="420px"
-    android:src="@drawable/save">
-  </ImageView>  
-  <ImageView android:id="@+id/cancelIcon"
+    android:background="@drawable/save">
+  </Button>  
+  <Button android:id="@+id/cancelIcon2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_y="1px"
     android:layout_x="450px"
-    android:src="@drawable/cancel">
-  </ImageView>  
+    android:background="@drawable/cancel">
+  </Button>  
   
 
   <TextView android:id="@+id/createGroup"
