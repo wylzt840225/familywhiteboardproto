@@ -12,9 +12,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class GroupSettings extends Activity {
+	public static final String PREFS_NAME = "MyPrefsFile";
+    
+	EditText groupEdit;
 	public static String groupName = "";
-    public static final String PREFS_NAME = "MyPrefsFile";
-    EditText groupEdit;
+    
+    EditText inviteEdit;
+    public static String inviteeName = "";
     boolean DEBUG = true;
 
 	@Override
@@ -26,11 +30,11 @@ public class GroupSettings extends Activity {
         saveIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
-            	/*groupName = groupEdit.getText().toString();
+            	groupName = groupEdit.getText().toString();
             	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
             	SharedPreferences.Editor editor = settings.edit();
             	editor.putString("groupName", groupName);
-            	editor.commit();*/
+            	editor.commit();
             	finish();
             }
         });
@@ -47,12 +51,20 @@ public class GroupSettings extends Activity {
         invite.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "invite", Toast.LENGTH_SHORT).show();
-            	//finish();
+            	
             }
         });
         
         groupEdit = (EditText) findViewById(R.id.groupNameEdit);
         groupEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(!hasFocus) groupName = groupEdit.getText().toString();
+			}
+		});
+        
+        inviteEdit = (EditText) findViewById(R.id.findPeople);
+        inviteEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus) groupName = groupEdit.getText().toString();
