@@ -9,16 +9,20 @@ import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GroupSettings extends Activity {
-	public static final String PREFS_NAME = "MyPrefsFile";
-    
 	EditText groupEdit;
 	public static String groupName = "";
     
     EditText inviteEdit;
     public static String inviteeName = "";
+    
+    ImageView newMemberIcon;
+    TextView newMemberName;
+    
     boolean DEBUG = true;
 
 	@Override
@@ -31,10 +35,6 @@ public class GroupSettings extends Activity {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
             	groupName = groupEdit.getText().toString();
-            	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            	SharedPreferences.Editor editor = settings.edit();
-            	editor.putString("groupName", groupName);
-            	editor.commit();
             	finish();
             }
         });
@@ -51,9 +51,13 @@ public class GroupSettings extends Activity {
         invite.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "invite", Toast.LENGTH_SHORT).show();
-            	
+            	newMemberIcon.setVisibility(0);
+            	newMemberName.setText(inviteEdit.getText().toString());
             }
         });
+        
+        newMemberIcon = (ImageView) findViewById(R.id.groupsIcon2);
+        newMemberName = (TextView) findViewById(R.id.groupsEdit2);
         
         groupEdit = (EditText) findViewById(R.id.groupNameEdit);
         groupEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -67,13 +71,11 @@ public class GroupSettings extends Activity {
         inviteEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!hasFocus) groupName = groupEdit.getText().toString();
+				if(!hasFocus) inviteeName = inviteEdit.getText().toString();
 			}
 		});
         
         // Default preferences
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        groupEdit.setText(settings.getString("groupName", groupName));
-    }
+	}
     
 }

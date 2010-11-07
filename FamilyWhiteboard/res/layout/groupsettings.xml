@@ -60,7 +60,7 @@
     android:layout_width="300px"
     android:layout_height="30px"
     android:textSize="10px"
-    android:text="sdf"
+    android:text=""
     android:layout_y="60px"
     android:layout_x="150px"
     android:textColor="#153E7E"
@@ -89,7 +89,7 @@
     android:layout_width="250px"
     android:layout_height="30px"
     android:textSize="14px"
-    android:text="sdf"
+    android:text=""
     android:textColor="#000"
     android:background="#e0e0e0"
     android:layout_y="150px"
@@ -130,17 +130,21 @@
     android:layout_height="wrap_content"
     android:layout_y="220px"
     android:layout_x="30px"
-    android:src="@drawable/personicon">
+    android:src="@drawable/personicon"
+    android:visibility="invisible">
   </ImageView>
   <TextView android:id="@+id/groupsEdit2"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="16px"
-    android:text="simran"
+    android:text=""
     android:textColor="#000"
     android:layout_y="220px"
     android:layout_x="60px">
   </TextView>
   
+   <ListView android:id="@+id/ListView01"
+	 android:layout_width="wrap_content"
+ 	 android:layout_height="wrap_content" />
   
 </AbsoluteLayout>
