@@ -41,8 +41,7 @@ public class Settings extends Activity {
         groupsEdit.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(Settings.this, "groupsEdit", Toast.LENGTH_SHORT).show();
-            	Intent myIntent = new Intent(v.getContext(), GroupSettings.class);
-                startActivityForResult(myIntent, GROUPS_INTENT);
+            	startActivity(new Intent(Settings.this, GroupSettings.class));
             }
         });
         
@@ -75,20 +74,6 @@ public class Settings extends Activity {
 				if(!hasFocus) userName = nameEdit.getText().toString();
 			}
 		});
-        
-        //nameEdit.setOnKeyListener(new OnKeyListener() {
-            /*public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_) &&
-                    (keyCode == KeyEvent.KEYCODE_)) {
-                	if(DEBUG) Toast.makeText(Settings.this, nameEdit.getText(), Toast.LENGTH_SHORT).show();
-                	userName = nameEdit.getText().toString();
-                  return true;
-                }
-                return false;
-            }*/
-        //});
-        
         
         // Default preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
