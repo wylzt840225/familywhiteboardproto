@@ -58,6 +58,24 @@ public class ViewThread extends Activity
 		         startActivityForResult(myIntent, 0);
 		    }
 		  });
+
+		Button settings = (Button)this.findViewById(R.id.Settings);
+		settings.setOnClickListener(new OnClickListener() {
+		    @Override
+		    public void onClick(View vi) {
+				 Intent myIntent = new Intent(v, Settings.class);
+		         startActivityForResult(myIntent, 0);
+		    }
+		  });
+
+		Button back = (Button)this.findViewById(R.id.BackButton);
+		back.setOnClickListener(new OnClickListener() {
+		    @Override
+		    public void onClick(View vi) {
+				 finish();
+		    }
+		  });
+		
 	}
 	
 	private class HubAdapter extends ArrayAdapter<Comment> {
