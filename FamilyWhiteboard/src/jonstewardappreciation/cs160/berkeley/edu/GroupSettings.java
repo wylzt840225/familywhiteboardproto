@@ -35,6 +35,14 @@ public class GroupSettings extends Activity {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
             	groupName = groupEdit.getText().toString();
+            	/*Bundle stats = new Bundle();
+                stats.putString("height","6\'4\""); 
+                stats.putString("weight", "190 lbs");
+                stats.putString("reach", "74\"");
+                setResult(1);*/
+            	Intent returnIntent = new Intent();
+                returnIntent.putExtra("groupName",groupName);
+                setResult(RESULT_OK,returnIntent);        
             	finish();
             }
         });
@@ -75,7 +83,6 @@ public class GroupSettings extends Activity {
 			}
 		});
         
-        // Default preferences
 	}
     
 }

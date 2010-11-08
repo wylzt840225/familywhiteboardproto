@@ -12,6 +12,8 @@ import android.view.View.OnFocusChangeListener;
 import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Settings extends Activity {
@@ -22,6 +24,8 @@ public class Settings extends Activity {
     public static final boolean DEBUG = true;
     public static String userName = "";
     EditText nameEdit;
+    TextView groupEdit;
+    ImageView groupEditImage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,7 @@ public class Settings extends Activity {
         groupsEdit.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(Settings.this, "groupsEdit", Toast.LENGTH_SHORT).show();
-            	startActivity(new Intent(Settings.this, GroupSettings.class));
+            	startActivityForResult(new Intent(Settings.this, GroupSettings.class), GROUPS_INTENT);
             }
         });
         
@@ -79,6 +83,9 @@ public class Settings extends Activity {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String name = settings.getString("name", userName);
         nameEdit.setText(name);
+        
+        groupEdit = (TextView) findViewById(R.id.group1Name);
+        groupEditImage = (ImageView) findViewById(R.id.group1);
     }
     
     
@@ -110,7 +117,10 @@ public class Settings extends Activity {
       else if (requestCode == GROUPS_INTENT) {
           if (resultCode == Activity.RESULT_OK) {
         	  if(DEBUG) Toast.makeText(Settings.this, "on activity result with group", Toast.LENGTH_SHORT).show();
-              // TODO Do something with the select image URI
+        	  String groupName = data.getStringExtra("groupName");
+              Toast.makeText(this, "group name: " + " " + groupName, Toast.LENGTH_LONG).show();
+              groupEditImage.setVisibility(0);
+              groupEdit.setText(groupName);
             }
           }
     }
