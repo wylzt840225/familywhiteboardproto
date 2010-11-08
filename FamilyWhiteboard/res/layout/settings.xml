@@ -5,6 +5,7 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
   android:background="#fff"
+  android:scrollbarAlwaysDrawVerticalTrack="true"
 >
   <TextView android:id="@+id/header"
     android:layout_width="500px"
@@ -140,6 +141,26 @@
     android:layout_y="220px"
     android:layout_x="90px">
   </Button>
+  
+  <ImageView android:id="@+id/group1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_y="295px"
+    android:layout_x="30px"
+    android:visibility="invisible"
+    android:src="@drawable/star">
+  </ImageView>
+  
+  <TextView android:id="@+id/group1Name"
+    android:layout_width="240px"
+    android:layout_height="30px"
+    android:textSize="18px"
+    android:text=" "
+    android:background="#fff"
+    android:textColor="#000"
+    android:layout_y="290px"
+    android:layout_x="50px">
+  </TextView>
   
   
 </AbsoluteLayout>
