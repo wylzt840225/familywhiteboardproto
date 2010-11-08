@@ -30,7 +30,7 @@ public class AddComment extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.addingcomment);
         submit = (Button) findViewById(R.id.submit);
         rg_priority = (RadioGroup) findViewById(R.id.rg_pri);
         tv_addgps = (TextView) findViewById(R.id.tv_addgps);
