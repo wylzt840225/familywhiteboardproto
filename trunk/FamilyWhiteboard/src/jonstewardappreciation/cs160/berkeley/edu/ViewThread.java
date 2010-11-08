@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class Hub extends Activity
+public class ViewThread extends Activity
 {
 	private ListView lv1;
 	private ArrayList<Comment> comments= new ArrayList();
@@ -28,30 +28,28 @@ public class Hub extends Activity
 	public void onCreate(Bundle icicle)
 	{
 		v = this;
-		comments.add(new Comment("John", "Hey", 1));
-		comments.add(new Comment("Steven", "Test Thread", 2));
-		comments.add(new Comment("Alex", "Emergency", 3));
-		comments.add(new Comment("Courtney", "Hi", 2));
-		comments.add(new Comment("Simi", "Sup", 1));
+		Comment c = new Comment("John", "First topic", 1);
+		c.linkComment(new Comment("Steven", "Here is a reply", 2));
+		c.linkComment(new Comment("Alex", "Another Reply", 3));
+		c.linkComment(new Comment("Courtney", "And another..", 2));
+		c.linkComment(new Comment("Simi", "Last Reply", 1));
+		
+		comments.add(c);
+		while (c.next != null)
+		{
+			comments.add(c.next);
+			c = c.next;
+		}
+		
 		super.onCreate(icicle);
 		setContentView(R.layout.hub);
 		lv1=(ListView)findViewById(R.id.ListView01);
 		// By using setAdpater method in listview we an add string array in list.
 		HubAdapter adapt = new HubAdapter(this,R.layout.list_item, comments);
 		lv1.setAdapter(adapt);
-		
-		
-		
-		lv1.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-			{
-	    		 Intent myIntent = new Intent(v, ViewThread.class);
-	             startActivityForResult(myIntent, 0);
-			}
-		});
 	}
 	
-	public void createThread()
+	public void addComment()
 	{
 		 Intent myIntent = new Intent(v, AddComment.class);
          startActivityForResult(myIntent, 0);
@@ -71,7 +69,7 @@ public class Hub extends Activity
                 View v = convertView;
                 if (v == null) {
                     LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    v = vi.inflate(R.layout.list_item, null);
+                    v = vi.inflate(R.layout.list_item2, null);
                 }
                 Comment o = items.get(position);
                 if (o != null) {
@@ -82,20 +80,6 @@ public class Hub extends Activity
                               tt.setText(""+o.getName());                            }
                         if(bt != null){
                               bt.setText(""+ o.getComment());
-                        }
-                        if(img != null){
-                        	switch (o.getPriority())
-                        	{
-                        	default:
-                        		img.setImageResource(R.drawable.priority_1);
-                        		break;
-                        	case 2:
-                        		img.setImageResource(R.drawable.priority_2);
-                        		break;
-                        	case 3:
-                        		img.setImageResource(R.drawable.priority_3);
-                        		break;
-                        	}
                         }
                 }
                 return v;
