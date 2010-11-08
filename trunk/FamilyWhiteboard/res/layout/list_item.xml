@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    android:textSize="16sp" >
-</TextView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="wrap_content" android:gravity="left|center"
+	android:layout_width="fill_parent" android:paddingBottom="5px"
+	android:paddingTop="5px" android:paddingLeft="5px">
+	<ImageView   
+		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+		android:src="@drawable/priority_1"/>
+	<ImageView   
+		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+		android:src="@drawable/userimg"
+		android:layout_marginLeft="5px"/>
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content"
+                android:padding="10px" >
+		<TextView android:id="@+id/Hub_Name"
+			android:text="Sample Name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10px"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			android:textColor="#FFFFFF" >
+		</TextView>
+		<TextView android:id="@+id/TextView02"
+			android:text="@+id/TextView02"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10px"
+			android:textColor="#0099CC"
+			android:layout_below="@id/Hub_Name">
+		</TextView>
+	</RelativeLayout>
+</LinearLayout>
