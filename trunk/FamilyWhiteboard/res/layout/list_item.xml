@@ -3,11 +3,12 @@
 	android:layout_height="wrap_content" android:gravity="left|center"
 	android:layout_width="fill_parent" android:paddingBottom="5px"
 	android:paddingTop="5px" android:paddingLeft="5px">
-	<ImageView   
+	<ImageView
+		android:id="@+id/Hub_Priority"
 		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
 		android:src="@drawable/priority_1"/>
-	<ImageView   
+	<ImageView
 		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
 		android:src="@drawable/userimg"

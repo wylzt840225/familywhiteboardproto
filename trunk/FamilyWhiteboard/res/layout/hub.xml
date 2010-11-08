@@ -2,7 +2,13 @@
 <LinearLayout android:id="@+id/LinearLayout01"
  android:layout_width="fill_parent"
  android:layout_height="fill_parent"
- xmlns:android="http://schemas.android.com/apk/res/android">
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:orientation="vertical">
+ <Button
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:text="Create Thread"
+     android:onClick="createThread" />
 	<ListView android:id="@+id/ListView01"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content" />
