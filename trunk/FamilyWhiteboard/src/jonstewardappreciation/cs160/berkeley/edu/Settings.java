@@ -32,7 +32,7 @@ public class Settings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
         
-        // Listeners
+        // Edit your profile picture
         final Button profilePictureEdit = (Button) findViewById(R.id.profilePictureEdit);
         profilePictureEdit.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -41,14 +41,20 @@ public class Settings extends Activity {
             }
         });
         
+        // Create a new group
         final Button groupsEdit = (Button) findViewById(R.id.groupsEdit);
         groupsEdit.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(Settings.this, "groupsEdit", Toast.LENGTH_SHORT).show();
-            	startActivityForResult(new Intent(Settings.this, GroupSettings.class), GROUPS_INTENT);
+            	Intent sendingIntent = new Intent(Settings.this, GroupSettings.class);
+            	sendingIntent.putExtra("groupName", "");
+                sendingIntent.putExtra("invitee1", "");
+                sendingIntent.putExtra("invitee2", "");
+                startActivityForResult(sendingIntent, GROUPS_INTENT);
             }
         });
         
+        // Save all activity and return to previous activity
         final Button saveIcon = (Button) findViewById(R.id.saveIcon);
         saveIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -62,6 +68,7 @@ public class Settings extends Activity {
             }
         });
         
+        // Cancel activity (no saves) 
         final Button cancelIcon = (Button) findViewById(R.id.cancelIcon);
         cancelIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -70,6 +77,25 @@ public class Settings extends Activity {
             }
         });
         
+        groupEdit = (TextView) findViewById(R.id.group1Name);
+        groupEditImage = (ImageView) findViewById(R.id.group1);
+        
+        // Click on a group you created to edit it again
+        final Button group1Name = (Button) findViewById(R.id.group1Name);
+        final String groupName = group1Name.getText().toString();
+        group1Name.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+            	if(DEBUG) Toast.makeText(Settings.this, "group1Name", Toast.LENGTH_SHORT).show();
+            	Intent sendingIntent = new Intent(Settings.this, GroupSettings.class);
+            	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            	sendingIntent.putExtra("groupName", groupName);
+                sendingIntent.putExtra("invitee1", settings.getString("invitee1", " "));
+                sendingIntent.putExtra("invitee2", settings.getString("invitee2", " "));
+                startActivityForResult(sendingIntent, GROUPS_INTENT);
+            }
+        });
+        
+        // Edit your user name
         nameEdit = (EditText) findViewById(R.id.nameEdit);
         nameEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
@@ -79,34 +105,16 @@ public class Settings extends Activity {
 			}
 		});
         
-        // Default preferences
+        // Restore existing preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String name = settings.getString("name", userName);
         nameEdit.setText(name);
+    }
         
-        groupEdit = (TextView) findViewById(R.id.group1Name);
-        groupEditImage = (ImageView) findViewById(R.id.group1);
-    }
-    
-    
-    
-    @Override
-    protected void onStop(){
-       super.onStop();
-
-      // We need an Editor object to make preference changes.
-      // All objects are from android.context.Context
-      SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-      SharedPreferences.Editor editor = settings.edit();
-      //editor.putBoolean("silentMode", mSilentMode);
-
-      // Commit the edits!
-      editor.commit();
-    }
-    
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
       super.onActivityResult(requestCode, resultCode, data);
+      
       if (requestCode == SELECT_IMAGE_INTENT) {
         if (resultCode == Activity.RESULT_OK) {
           Uri selectedImage = data.getData();
@@ -116,9 +124,17 @@ public class Settings extends Activity {
       }
       else if (requestCode == GROUPS_INTENT) {
           if (resultCode == Activity.RESULT_OK) {
-        	  if(DEBUG) Toast.makeText(Settings.this, "on activity result with group", Toast.LENGTH_SHORT).show();
+        	  //if(DEBUG) Toast.makeText(Settings.this, "on activity result with group", Toast.LENGTH_SHORT).show();
         	  String groupName = data.getStringExtra("groupName");
-              Toast.makeText(this, "group name: " + " " + groupName, Toast.LENGTH_LONG).show();
+        	  String invitee1 = data.getStringExtra("invitee1");
+        	  String invitee2 = data.getStringExtra("invitee2");
+        	  SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+              SharedPreferences.Editor editor = settings.edit();
+              editor.putString("groupName", groupName);
+              editor.putString("invitee1", invitee1);
+              editor.putString("invitee2", invitee2);
+              if(DEBUG) Toast.makeText(Settings.this, settings.getString("groupName", "?")+ " " + settings.getString("invitee1", "??")+ " " + settings.getString("invitee2", "???") , Toast.LENGTH_SHORT).show();
+        	  editor.commit();
               groupEditImage.setVisibility(0);
               groupEdit.setText(groupName);
             }
