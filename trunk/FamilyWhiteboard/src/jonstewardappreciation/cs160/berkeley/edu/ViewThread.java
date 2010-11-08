@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 
 
 public class ViewThread extends Activity
@@ -42,17 +44,20 @@ public class ViewThread extends Activity
 		}
 		
 		super.onCreate(icicle);
-		setContentView(R.layout.hub);
+		setContentView(R.layout.viewthread);
 		lv1=(ListView)findViewById(R.id.ListView01);
 		// By using setAdpater method in listview we an add string array in list.
-		HubAdapter adapt = new HubAdapter(this,R.layout.list_item, comments);
+		HubAdapter adapt = new HubAdapter(this,R.layout.list_item2, comments);
 		lv1.setAdapter(adapt);
-	}
-	
-	public void addComment()
-	{
-		 Intent myIntent = new Intent(v, AddComment.class);
-         startActivityForResult(myIntent, 0);
+
+		Button closeButton = (Button)this.findViewById(R.id.addComment2);
+		closeButton.setOnClickListener(new OnClickListener() {
+		    @Override
+		    public void onClick(View vi) {
+				 Intent myIntent = new Intent(v, AddComment.class);
+		         startActivityForResult(myIntent, 0);
+		    }
+		  });
 	}
 	
 	private class HubAdapter extends ArrayAdapter<Comment> {
