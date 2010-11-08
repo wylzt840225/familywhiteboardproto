@@ -20,8 +20,11 @@ public class GroupSettings extends Activity {
     EditText inviteEdit;
     public static String inviteeName = "";
     
-    ImageView newMemberIcon;
-    TextView newMemberName;
+    ImageView newMemberIcon1;
+    TextView newMemberName1;
+    ImageView newMemberIcon2;
+    TextView newMemberName2;
+    boolean firstMember = true;
     
     boolean DEBUG = true;
 
@@ -30,18 +33,18 @@ public class GroupSettings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.groupsettings);
         
+        //String groupNameFromBefore = savedInstanceState.getString("groupName");
+        //if(DEBUG) Toast.makeText(GroupSettings.this, groupNameFromBefore, Toast.LENGTH_SHORT).show();
+    	
         final Button saveIcon = (Button) findViewById(R.id.saveIcon2);
         saveIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
             	groupName = groupEdit.getText().toString();
-            	/*Bundle stats = new Bundle();
-                stats.putString("height","6\'4\""); 
-                stats.putString("weight", "190 lbs");
-                stats.putString("reach", "74\"");
-                setResult(1);*/
             	Intent returnIntent = new Intent();
                 returnIntent.putExtra("groupName",groupName);
+                returnIntent.putExtra("invitee1",newMemberName1.toString());
+                returnIntent.putExtra("invitee2",newMemberName2.toString());
                 setResult(RESULT_OK,returnIntent);        
             	finish();
             }
@@ -59,13 +62,22 @@ public class GroupSettings extends Activity {
         invite.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(GroupSettings.this, "invite", Toast.LENGTH_SHORT).show();
-            	newMemberIcon.setVisibility(0);
-            	newMemberName.setText(inviteEdit.getText().toString());
+            	if(firstMember) {
+            		newMemberIcon1.setVisibility(0);
+                	newMemberName1.setText(inviteEdit.getText().toString());
+                	firstMember = false;
+            	}
+            	else {
+            		newMemberIcon2.setVisibility(0);
+            		newMemberName2.setText(inviteEdit.getText().toString());
+            	}
             }
         });
         
-        newMemberIcon = (ImageView) findViewById(R.id.groupsIcon2);
-        newMemberName = (TextView) findViewById(R.id.groupsEdit2);
+        newMemberIcon1 = (ImageView) findViewById(R.id.groupsIcon1);
+        newMemberName1 = (TextView) findViewById(R.id.groupsEdit1);
+        newMemberIcon2 = (ImageView) findViewById(R.id.groupsIcon2);
+        newMemberName2 = (TextView) findViewById(R.id.groupsEdit2);
         
         groupEdit = (EditText) findViewById(R.id.groupNameEdit);
         groupEdit.setOnFocusChangeListener(new OnFocusChangeListener() {
