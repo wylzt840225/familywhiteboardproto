@@ -10,12 +10,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddComment extends Activity {
-
+	
 	Button submit;
 	RadioGroup rg_priority;
 	TextView tv_addgps;
@@ -52,6 +53,24 @@ public class AddComment extends Activity {
         
         submit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
+		
+				int commentPriority = 1;
+				String commentText;
+				String addingName;
+				RadioButton priority;
+				priority = (RadioButton) findViewById(R.id.lowpri);
+				if (priority.isChecked()){ commentPriority = 1;}
+				priority = (RadioButton) findViewById(R.id.medpri);
+				if (priority.isChecked()){ commentPriority = 2;}
+				priority = (RadioButton) findViewById(R.id.highpri);
+				if (priority.isChecked()){ commentPriority = 3;}
+				commentText = msgbox.getText().toString();
+				addingName = SignUp.curUserName;
+				if (addingName.length()<=5){
+					addingName = "Previous User";
+				}
+				Hub.comments.add(new Comment(addingName,commentText,commentPriority));
+				
 				setResult(RESULT_OK);
                 finish();
 			}

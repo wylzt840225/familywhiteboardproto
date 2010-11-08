@@ -33,8 +33,9 @@ public class FamilyWhiteboard extends Activity {
     
     private OnClickListener loginListen = new OnClickListener(){
     	public void onClick(View v)
-		{
-    		
+		{	
+    		 Intent myIntent = new Intent(v.getContext(), Hub.class);
+             startActivityForResult(myIntent, 0);
 		}
     };
 }
