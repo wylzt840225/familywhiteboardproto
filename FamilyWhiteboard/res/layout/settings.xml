@@ -59,7 +59,7 @@
   <EditText android:id="@+id/nameEdit"
     android:layout_width="300px"
     android:layout_height="30px"
-    android:textSize="10px"
+    android:textSize="18px"
     android:text="sdf"
     android:layout_y="60px"
     android:layout_x="130px"
@@ -145,13 +145,13 @@
   <ImageView android:id="@+id/group1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_y="295px"
+    android:layout_y="292px"
     android:layout_x="30px"
     android:visibility="invisible"
     android:src="@drawable/star">
   </ImageView>
   
-  <TextView android:id="@+id/group1Name"
+  <Button android:id="@+id/group1Name"
     android:layout_width="240px"
     android:layout_height="30px"
     android:textSize="18px"
@@ -159,8 +159,9 @@
     android:background="#fff"
     android:textColor="#000"
     android:layout_y="290px"
-    android:layout_x="50px">
-  </TextView>
+    android:layout_x="50px"
+    android:gravity="center_vertical">
+  </Button>
   
   
 </AbsoluteLayout>
