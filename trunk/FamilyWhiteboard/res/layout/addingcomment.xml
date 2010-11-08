@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent" 
                 android:layout_height="wrap_content"
-                android:padding="10px">
+                android:padding="10px"
+                android:background="#fff">
 
 <ImageView
 	android:id="@+id/userpic"
@@ -16,6 +17,8 @@
     android:layout_height="wrap_content" 
     android:text="John Tsai"
     android:layout_toRightOf="@id/userpic"
+    android:textColor="#000"
+    android:background="#e0e0e0"
     />
 <EditText
 	android:id="@+id/msgbox"
@@ -25,6 +28,8 @@
 	android:layout_toRightOf="@id/userpic"
 	android:text="Add a Comment..."
 	android:layout_marginBottom="40px"
+	android:textColor="#153E7E"
+	android:background="#e0e0e0"
 	/>
 <ImageView
 	android:id="@+id/iv_addpic"
@@ -40,6 +45,8 @@
     android:text="Add a picture"
     android:layout_toRightOf="@id/iv_addpic"
     android:layout_alignBottom="@id/iv_addpic"
+    android:textColor="#000"
+    android:background="#e0e0e0"
     />
 <ImageView
 	android:id="@+id/iv_addgps"
@@ -55,6 +62,8 @@
     android:text="Add location"
     android:layout_toRightOf="@id/iv_addgps"
     android:layout_alignBottom="@id/iv_addgps"
+    android:textColor="#000"
+    android:background="#e0e0e0"
     />
     <TextView  
 	android:id="@+id/tv_gpsloc"
@@ -64,6 +73,8 @@
     android:textSize="10px"
     android:layout_below="@id/tv_addgps"
     android:layout_toRightOf="@id/iv_addgps"
+    android:textColor="#000"
+    android:background="#e0e0e0"
     />
      <Button
 	android:id="@+id/submit"
@@ -76,9 +87,11 @@
 	android:id="@+id/pri"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content" 
-    android:text="Piority"
+    android:text="Priority"
     android:layout_below="@id/iv_addgps"
     android:layout_marginTop="30px"
+    android:textColor="#000"
+    android:background="#e0e0e0"
     />
     <RadioGroup
       android:id="@+id/rg_pri"
@@ -86,6 +99,8 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_above="@id/submit"
+      android:textColor="#000"
+      android:background="#e0e0e0"
         android:layout_below="@id/pri">
 
 <RadioButton
