@@ -113,13 +113,14 @@
     android:layout_height="wrap_content"
     android:layout_y="190px"
     android:layout_x="30px"
+    android:visibility="invisible"
     android:src="@drawable/personicon">
   </ImageView>
   <TextView android:id="@+id/groupsEdit1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textSize="16px"
-    android:text="yash"
+    android:text=""
     android:textColor="#000"
     android:layout_y="190px"
     android:layout_x="60px">
