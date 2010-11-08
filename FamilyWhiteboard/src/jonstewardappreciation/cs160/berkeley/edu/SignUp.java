@@ -30,12 +30,20 @@ public class SignUp extends Activity {
 	
 	
     private OnClickListener customizeListen = new OnClickListener(){
+    	Toast errorToast;
     	public void onClick(View v)
 		{
     		 String usename = username.getText().toString();
     		 String pswd = password.getText().toString();
+    		 if (usename.length() >= 6){
     		 Toast testToast = Toast.makeText(getBaseContext(), "Username "+ usename, Toast.LENGTH_LONG);
     		 testToast.show();
+    		 Intent myIntent = new Intent(v.getContext(), Settings.class);
+             startActivityForResult(myIntent, 0);
+    		 }else{
+    			 errorToast = Toast.makeText(getBaseContext(), "Please enter a username of at least 6 characters!", Toast.LENGTH_LONG);
+        		 errorToast.show();
+    		 }
 		}
     };
     
