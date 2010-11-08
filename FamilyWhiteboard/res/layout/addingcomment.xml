@@ -36,7 +36,7 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_below="@id/msgbox"
-	android:src="@drawable/icon"
+	android:src="@drawable/camera"
 	/>
 <TextView  
 	android:id="@+id/tv_addpic"
@@ -52,7 +52,7 @@
 	android:id="@+id/iv_addgps"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
-	android:src="@drawable/icon"
+	android:src="@drawable/map"
 	android:layout_below="@id/iv_addpic"
 	/>
 <TextView  

@@ -24,8 +24,8 @@ import android.view.View.OnClickListener;
 
 public class Hub extends Activity
 {
-	private ListView lv1;
-	private ArrayList<Comment> comments= new ArrayList();
+	protected static ListView lv1;
+	protected static ArrayList<Comment> comments= new ArrayList();
 	private Context v;
 	@Override
 	public void onCreate(Bundle icicle)
@@ -43,7 +43,7 @@ public class Hub extends Activity
 		HubAdapter adapt = new HubAdapter(this,R.layout.list_item, comments);
 		lv1.setAdapter(adapt);
 		
-		
+	
 		lv1.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
@@ -69,8 +69,21 @@ public class Hub extends Activity
 		         startActivityForResult(myIntent, 0);
 		    }
 		  });
+		
 	}
-	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {     
+		  super.onActivityResult(requestCode, resultCode, data); 
+		  switch(requestCode) { 
+		    case (0) : { 
+		      if (resultCode == Activity.RESULT_OK) { 
+			         HubAdapter adapt = new HubAdapter(v,R.layout.list_item, comments);
+					 lv1.setAdapter(adapt);
+					 Toast.makeText(v, "cancelIcon", Toast.LENGTH_SHORT).show();
+		      } 
+		      break; 
+		    } 
+		  } 
+		}
 	private class HubAdapter extends ArrayAdapter<Comment> {
 
         private ArrayList<Comment> items;
