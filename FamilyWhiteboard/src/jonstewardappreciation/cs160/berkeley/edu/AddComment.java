@@ -41,7 +41,8 @@ public class AddComment extends Activity {
         tv_gpsloc = (TextView) findViewById(R.id.tv_gpsloc);
         msgbox	  = (EditText) findViewById(R.id.msgbox);
         msgbox.clearFocus();
-        
+        TextView username = (TextView) findViewById(R.id.username);
+        username.setText(SignUp.curUserName);
         msgbox.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if(first) {

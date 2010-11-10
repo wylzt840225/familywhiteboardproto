@@ -39,7 +39,7 @@ public class GroupSettings extends Activity {
         final Button saveIcon = (Button) findViewById(R.id.saveIcon2);
         saveIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
+            //	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
             	groupName = groupEdit.getText().toString();
             	Intent returnIntent = new Intent();
                 returnIntent.putExtra("groupName",groupName);
@@ -53,7 +53,7 @@ public class GroupSettings extends Activity {
         final Button cancelIcon = (Button) findViewById(R.id.cancelIcon2);
         cancelIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	if(DEBUG) Toast.makeText(GroupSettings.this, "cancelIcon", Toast.LENGTH_SHORT).show();
+            //	if(DEBUG) Toast.makeText(GroupSettings.this, "cancelIcon", Toast.LENGTH_SHORT).show();
             	finish();
             }
         });
@@ -61,7 +61,7 @@ public class GroupSettings extends Activity {
         final Button invite = (Button) findViewById(R.id.invite);
         invite.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	if(DEBUG) Toast.makeText(GroupSettings.this, "invite", Toast.LENGTH_SHORT).show();
+            	//if(DEBUG) Toast.makeText(GroupSettings.this, "invite", Toast.LENGTH_SHORT).show();
             	if(firstMember) {
             		newMemberIcon1.setVisibility(0);
                 	newMemberName1.setText(inviteEdit.getText().toString());
