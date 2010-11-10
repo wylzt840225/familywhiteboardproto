@@ -25,7 +25,7 @@
 	 android:id="@+id/createThread"
      android:layout_height="wrap_content"
      android:layout_width="fill_parent"
-     android:text="Create Thread"
+     android:text="Make a Post!"
      android:onClick="createThread" />
 
 	<ListView android:id="@+id/ListView01"

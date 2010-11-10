@@ -69,6 +69,13 @@ public class Hub extends Activity
 		         startActivityForResult(myIntent, 0);
 		    }
 		  });
+		Button logout= (Button)this.findViewById(R.id.LogOut);
+		logout.setOnClickListener(new OnClickListener() {
+		    @Override
+		    public void onClick(View vi) {
+				finish();
+		    }
+		  });
 		
 	}
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {     
