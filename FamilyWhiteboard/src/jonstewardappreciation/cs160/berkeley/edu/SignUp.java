@@ -18,10 +18,10 @@ public class SignUp extends Activity {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
         Button goToCustomize = (Button) findViewById(R.id.customizeButton);
-        Button goToHub = (Button) findViewById(R.id.mainHubButton);
+        //Button goToHub = (Button) findViewById(R.id.mainHubButton);
         
         goToCustomize.setOnClickListener(customizeListen);
-        goToHub.setOnClickListener(goToHubListen);
+        //goToHub.setOnClickListener(goToHubListen);
         
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
