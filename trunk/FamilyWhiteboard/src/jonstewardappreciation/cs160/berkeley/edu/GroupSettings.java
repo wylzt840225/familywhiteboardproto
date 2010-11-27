@@ -26,7 +26,7 @@ public class GroupSettings extends Activity {
     TextView newMemberName2;
     boolean firstMember = true;
     
-    boolean DEBUG = true;
+    boolean DEBUG = false;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
