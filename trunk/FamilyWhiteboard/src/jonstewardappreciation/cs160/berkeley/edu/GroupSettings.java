@@ -36,7 +36,7 @@ public class GroupSettings extends Activity {
         //String groupNameFromBefore = savedInstanceState.getString("groupName");
         //if(DEBUG) Toast.makeText(GroupSettings.this, groupNameFromBefore, Toast.LENGTH_SHORT).show();
     	
-        final Button saveIcon = (Button) findViewById(R.id.saveIcon2);
+        final Button saveIcon = (Button) findViewById(R.id.saveIcon);
         saveIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             //	if(DEBUG) Toast.makeText(GroupSettings.this, "saveIcon2", Toast.LENGTH_SHORT).show();
@@ -50,7 +50,7 @@ public class GroupSettings extends Activity {
             }
         });
         
-        final Button cancelIcon = (Button) findViewById(R.id.cancelIcon2);
+        final Button cancelIcon = (Button) findViewById(R.id.cancelIcon);
         cancelIcon.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             //	if(DEBUG) Toast.makeText(GroupSettings.this, "cancelIcon", Toast.LENGTH_SHORT).show();
@@ -66,10 +66,12 @@ public class GroupSettings extends Activity {
             		newMemberIcon1.setVisibility(0);
                 	newMemberName1.setText(inviteEdit.getText().toString());
                 	firstMember = false;
+                	inviteEdit.setText("");
             	}
             	else {
             		newMemberIcon2.setVisibility(0);
             		newMemberName2.setText(inviteEdit.getText().toString());
+            		inviteEdit.setText("");
             	}
             }
         });
