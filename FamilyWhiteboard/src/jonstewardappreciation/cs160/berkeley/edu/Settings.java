@@ -24,6 +24,7 @@ public class Settings extends Activity {
     public static final boolean DEBUG = false;
     public static String userName = "";
     EditText nameEdit;
+    EditText passwordEdit;
     TextView groupEdit;
     ImageView groupEditImage;
 
@@ -105,10 +106,15 @@ public class Settings extends Activity {
 			}
 		});
         
+        // Edit your password
+        passwordEdit = (EditText) findViewById(R.id.passwordEdit);
+        
         // Restore existing preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String name = settings.getString("name", userName);
+        String name = settings.getString("username", userName);
+        String pswd = settings.getString("password", "");
         nameEdit.setText(name);
+        passwordEdit.setText(pswd);
     }
         
     @Override

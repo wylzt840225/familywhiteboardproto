@@ -2,6 +2,7 @@ package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -36,14 +37,21 @@ public class SignUp extends Activity {
 		{
     		 String usename = username.getText().toString();
     		 String pswd = password.getText().toString();
-    		 if (usename.length() >= 6 &&  pswd.length() >= 6){
-    		 /*Toast testToast = Toast.makeText(getBaseContext(), "Username "+ usename, Toast.LENGTH_LONG);
-    		 testToast.show();*/
+    		 if (usename.length() >= 1 &&  pswd.length() >= 1){
+    		 //Toast testToast = Toast.makeText(getBaseContext(), "Username "+ usename + " " + pswd, Toast.LENGTH_LONG);
+    		 //testToast.show();
+    		 SharedPreferences settings = getSharedPreferences(Settings.PREFS_NAME, 0);
+    		 SharedPreferences.Editor editor = settings.edit();
+             editor.putString("username", usename);
+             editor.putString("password", pswd);
+             editor.commit();
     		 curUserName = usename;
     		 Intent myIntent = new Intent(v.getContext(), Settings.class);
+    		 myIntent.putExtra("username", usename);
+    		 myIntent.putExtra("password", pswd);
              startActivityForResult(myIntent, 0);
     		 }else{
-    			 if (usename.length() < 6){
+    			 if (usename.length() < 1){
     			 errorToast = Toast.makeText(getBaseContext(), "Please enter a username of at least 6 characters!", Toast.LENGTH_LONG);
         		 errorToast.show();}
     			 else{
@@ -60,14 +68,14 @@ public class SignUp extends Activity {
 		{	
     		String usename = username.getText().toString();
    		 String pswd = password.getText().toString();
-   		 if (usename.length() >= 6 &&  pswd.length() >= 6){
+   		 if (usename.length() >= 1 &&  pswd.length() >= 1){
    		 /*Toast testToast = Toast.makeText(getBaseContext(), "Username "+ usename, Toast.LENGTH_LONG);
    		 testToast.show();*/
    		 curUserName = usename;
    		 Intent myIntent = new Intent(v.getContext(), Hub.class);
             startActivityForResult(myIntent, 0);
    		 }else{
-   			 if (usename.length() < 6){
+   			 if (usename.length() < 1){
    			 errorToast = Toast.makeText(getBaseContext(), "Please enter a username of at least 6 characters!", Toast.LENGTH_LONG);
        		 errorToast.show();}
    			 else{
