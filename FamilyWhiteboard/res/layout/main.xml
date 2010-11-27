@@ -1,40 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout
-android:id="@+id/widget71"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:background="#fff"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<TextView
-android:id="@+id/widget30"
-android:layout_width="1px"
-android:layout_height="19px"
-android:text="TextView"
-android:layout_x="0px"
-android:layout_y="0px"
->
-</TextView>
-<TextView
-android:id="@+id/widget31"
-android:layout_width="380px"
-android:layout_height="140px"
-android:gravity="center_vertical|center_horizontal"
-android:text="Welcome to Family Whiteboard!"
-android:textSize="40sp"
-android:typeface="sans"
-android:textStyle="bold"
-android:layout_x="35px"
-android:layout_y="10px"
->
-</TextView>
-<Button
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="#fff">
+  
+	<TextView android:id="@+id/widget28"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Welcome to Family Whiteboard!"
+    android:textColor="#153E7E"
+	android:layout_centerHorizontal="true"
+    android:textSize="40px"
+    android:textStyle="bold"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="50px"
+    />
+	
+	<ImageView
+	android:id="@+id/whiteboardPic"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:src="@drawable/whiteboard"
+	android:layout_centerHorizontal="true"
+	android:layout_below="@+id/widget28"
+	android:layout_marginTop="30px"
+	android:gravity="center_horizontal"
+	/>
+	
+	<Button
 android:id="@+id/loginButton"
 android:layout_width="369px"
 android:layout_height="89px"
 android:text="Sign In"
-android:layout_x="50px"
-android:layout_y="307px"
+android:textSize="30px"
+android:layout_centerHorizontal="true"
+	android:layout_below="@+id/whiteboardPic"
+	android:layout_marginTop="30px"
 >
 </Button>
 <Button
@@ -42,17 +44,12 @@ android:id="@+id/newUserButton"
 android:layout_width="370px"
 android:layout_height="94px"
 android:text="New User"
-android:layout_x="50px"
-android:layout_y="440px"
+android:textSize="30px"
+android:layout_centerHorizontal="true"
+	android:layout_below="@+id/loginButton"
+	android:layout_marginTop="30px"
 >
 </Button>
-<ImageView
-android:id="@+id/whiteboardPic"
-android:layout_width="236px"
-android:layout_height="136px"
-android:layout_x="110px"
-android:layout_y="141px"
-android:src="@drawable/whiteboard"
->
-</ImageView>
-</AbsoluteLayout>
+	
+
+</RelativeLayout>
