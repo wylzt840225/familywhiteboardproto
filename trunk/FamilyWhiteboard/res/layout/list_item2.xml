@@ -4,6 +4,7 @@
 	android:layout_width="fill_parent" android:paddingBottom="5px"
 	android:paddingTop="5px" android:paddingLeft="5px">
 	<ImageView
+		android:id="@+id/userimg2"
 		android:layout_width="wrap_content"
   		android:layout_height="wrap_content"
 		android:src="@drawable/userimg"

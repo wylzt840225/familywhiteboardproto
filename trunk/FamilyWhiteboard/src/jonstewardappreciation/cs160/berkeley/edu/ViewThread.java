@@ -110,12 +110,29 @@ public class ViewThread extends Activity
                         TextView tt = (TextView) v.findViewById(R.id.Hub_Name);
                         TextView bt = (TextView) v.findViewById(R.id.TextView02);
                         ImageView img = (ImageView) v.findViewById(R.id.Hub_Priority);
+                        ImageView userimg = (ImageView) v.findViewById(R.id.userimg2);
                         if (tt != null) {
                               tt.setText(""+o.getName());                            }
                         if(bt != null){
                               bt.setText(""+ o.getComment());
                         }
+                    	if (userimg != null) {
+        					String name = o.getName();
+        					
+        					if(name.equals("Alex")) {
+        						userimg.setImageResource(R.drawable.dogone);
+        					} else if(name.equals("Simi")) {
+        						userimg.setImageResource(R.drawable.userimg);
+        					} else if(name.equals("John")) {
+        						userimg.setImageResource(R.drawable.giraffe);
+        					} else if(name.equals("Steven")) {
+        						userimg.setImageResource(R.drawable.bear);
+        					} else if(name.equals("Courtney")) {
+        						userimg.setImageResource(R.drawable.horse);
+        					}
+        				}
                 }
+                
                 return v;
         }
 }
