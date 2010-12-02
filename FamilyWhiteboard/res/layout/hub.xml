@@ -24,12 +24,12 @@
 	android:id="@+id/ScrollUp"
 	android:layout_height="wrap_content"
 	android:layout_width="fill_parent"
-	android:text="Up" />
+	android:text="Scroll Up" />
 <Button
 	android:id="@+id/ScrollDown"
 	android:layout_height="wrap_content"
 	android:layout_width="fill_parent"
-	android:text="Down" />
+	android:text="Scroll Down" />
 </LinearLayout>
  <Button
 	 android:id="@+id/createThread"
