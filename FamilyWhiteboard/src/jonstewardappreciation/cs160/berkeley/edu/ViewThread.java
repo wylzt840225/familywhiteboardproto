@@ -26,22 +26,31 @@ public class ViewThread extends Activity
 	private ListView lv1;
 	private ArrayList<Comment> comments= new ArrayList();
 	private Context v;
+	private boolean firstTime = true;
+	
+	private void maybeAddFakePosts() {
+		if(firstTime) {
+			Comment c = new Comment("John", "First topic", 1);
+			c.linkComment(new Comment("Steven", "Here is a reply", 2));
+			c.linkComment(new Comment("Alex", "Another Reply", 3));
+			c.linkComment(new Comment("Courtney", "And another..", 2));
+			c.linkComment(new Comment("Simi", "Last Reply", 1));
+			
+			comments.add(c);
+			while (c.next != null)
+			{
+				comments.add(c.next);
+				c = c.next;
+			}
+		}
+		firstTime = false;
+	}
 	@Override
 	public void onCreate(Bundle icicle)
 	{
 		v = this;
-		Comment c = new Comment("John", "First topic", 1);
-		c.linkComment(new Comment("Steven", "Here is a reply", 2));
-		c.linkComment(new Comment("Alex", "Another Reply", 3));
-		c.linkComment(new Comment("Courtney", "And another..", 2));
-		c.linkComment(new Comment("Simi", "Last Reply", 1));
 		
-		comments.add(c);
-		while (c.next != null)
-		{
-			comments.add(c.next);
-			c = c.next;
-		}
+		maybeAddFakePosts();
 		
 		super.onCreate(icicle);
 		setContentView(R.layout.viewthread);
@@ -75,6 +84,8 @@ public class ViewThread extends Activity
 				 finish();
 		    }
 		  });
+		
+		
 		
 	}
 	

@@ -50,6 +50,7 @@ public class SignUp extends Activity {
     		 myIntent.putExtra("username", usename);
     		 myIntent.putExtra("password", pswd);
              startActivityForResult(myIntent, 0);
+             finish();
     		 }else{
     			 if (usename.length() < 1){
     			 errorToast = Toast.makeText(getBaseContext(), "Please enter a username of at least 6 characters!", Toast.LENGTH_LONG);
