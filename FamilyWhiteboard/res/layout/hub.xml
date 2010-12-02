@@ -20,6 +20,16 @@
      android:layout_height="wrap_content"
      android:layout_width="fill_parent"
      android:text="Logout" />
+<Button
+	android:id="@+id/ScrollUp"
+	android:layout_height="wrap_content"
+	android:layout_width="fill_parent"
+	android:text="Up" />
+<Button
+	android:id="@+id/ScrollDown"
+	android:layout_height="wrap_content"
+	android:layout_width="fill_parent"
+	android:text="Down" />
 </LinearLayout>
  <Button
 	 android:id="@+id/createThread"

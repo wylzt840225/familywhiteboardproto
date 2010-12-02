@@ -67,6 +67,26 @@ public class Hub extends Activity
 			}
 		});
 		
+		Button down = (Button) findViewById(R.id.ScrollDown);
+		down.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				//scroll up 
+				int newY = lv1.getScrollY() + 50;
+				newY = newY <= lv1.getBottom() ? newY : lv1.getBottom();
+				lv1.scrollTo(0, newY);
+			}
+		});
+		
+		Button up = (Button) findViewById(R.id.ScrollUp);
+		up.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				//scroll down
+				int newY = lv1.getScrollY() - 50;
+				newY = newY >= 0 ? newY : 0;
+				lv1.scrollTo(0, newY);
+			}
+		});
+		
 		Button closeButton = (Button)this.findViewById(R.id.createThread);
 		closeButton.setOnClickListener(new OnClickListener() {
 		    @Override
