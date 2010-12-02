@@ -70,8 +70,7 @@ public class AddComment extends Activity {
 				if (addingName.length()<=5){
 					addingName = "Previous User";
 				}
-				Hub.comments.add(new Comment(addingName,commentText,commentPriority));
-				
+				Hub.comments.add(0, new Comment(addingName,commentText,commentPriority));
 				setResult(RESULT_OK);
                 finish();
 			}
@@ -84,7 +83,7 @@ public class AddComment extends Activity {
 		          //  startActivity(i);
 				if(tv_gpsloc.getText().length()  <= 1) {
 				SystemClock.sleep(1000);
-				tv_gpsloc.setText("Location: 37.875598,-122.258812");
+				tv_gpsloc.setText("Location: 37.875,-122.258");
 				}
 			}
 		});
@@ -95,7 +94,7 @@ public class AddComment extends Activity {
 		          //  startActivity(i);
 				if(tv_gpsloc.getText().length()  <= 1) {
 					SystemClock.sleep(1000);
-					tv_gpsloc.setText("Location: 37.875598,-122.258812");
+					tv_gpsloc.setText("Location: 37.875,-122.258");
 					}
 			}
 		});
