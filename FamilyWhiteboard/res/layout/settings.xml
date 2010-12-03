@@ -111,7 +111,7 @@
     android:layout_width="365px"
     android:layout_height="40px"
     android:textSize="25px"
-    android:text=" Change Profile Picture              >"
+    android:text=" Change Profile Picture           >"
     android:background="#e0e0e0"
     android:textColor="#000"
 	android:layout_marginTop="220px"
