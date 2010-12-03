@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,32 @@ public class Hub extends Activity {
 	private boolean firstTime = true;
 
 	private void maybeAddFakeComments() {
+		
+	/** 
+	 * 
+	 * Database 
+	 * 
+	 * **/
+	//Open the database 
+		DBAdapter1 db1 = FamilyWhiteboard.db.open();
+	//Insert a post (String title, String content, int priority, String author)
+		db1.insertPost("title1", "content1", 1, "simran");
+		db1.insertPost("title2", "content2", 1, "someoneElse");
+	//Get all posts
+		Cursor c = db1.getAllPosts();
+		startManagingCursor(c);
+		while (c.moveToNext()) {   
+			String title = c.getString(c.getColumnIndex("title"));
+			String content = c.getString(c.getColumnIndex("content"));
+			int priority = c.getInt(c.getColumnIndex("priority"));
+			String author = c.getString(c.getColumnIndex("author"));
+			Log.w("Post", title + " " + content + " " + priority + " " + author);
+		}	
+	//Close the database
+		db1.close();
+		
+		
+		
 		if (firstTime) {
 			// ok...these fake comment threads were being duplicated after
 			// logging out

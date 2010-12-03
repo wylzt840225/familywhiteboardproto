@@ -65,6 +65,7 @@ public class Settings extends Activity {
             	SharedPreferences.Editor editor = settings.edit();
             	editor.putString("name", userName);
             	editor.commit();
+            	startActivity(new Intent(v.getContext(), Hub.class));
             	finish();
             }
         });

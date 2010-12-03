@@ -108,14 +108,14 @@
 	android:layout_marginLeft="10px"/>
   
 	<Button android:id="@+id/profilePictureEdit"
-    android:layout_width="380px"
+    android:layout_width="365px"
     android:layout_height="40px"
     android:textSize="25px"
     android:text=" Change Profile Picture              >"
     android:background="#e0e0e0"
     android:textColor="#000"
 	android:layout_marginTop="220px"
-	android:layout_marginLeft="60px"
+	android:layout_marginLeft="75px"
 	android:gravity="center_vertical"
     />
 </RelativeLayout>

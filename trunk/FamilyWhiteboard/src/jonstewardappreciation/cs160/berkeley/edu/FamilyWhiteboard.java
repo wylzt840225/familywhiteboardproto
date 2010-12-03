@@ -9,11 +9,13 @@ import android.widget.Button;
 
 public class FamilyWhiteboard extends Activity {
     /** Called when the activity is first created. */
+	
+	public static DBAdapter1 db;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+        db = new DBAdapter1(this);
         
         Button login = (Button) findViewById(R.id.loginButton);
         Button signup = (Button) findViewById(R.id.newUserButton);
