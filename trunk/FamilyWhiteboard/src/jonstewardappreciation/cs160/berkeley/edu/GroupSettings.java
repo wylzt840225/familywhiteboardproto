@@ -1,6 +1,7 @@
 package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -55,6 +56,20 @@ public class GroupSettings extends Activity {
             public void onClick(View v) {
             //	if(DEBUG) Toast.makeText(GroupSettings.this, "cancelIcon", Toast.LENGTH_SHORT).show();
             	finish();
+            }
+        });
+        
+     // Help
+        final Button helpIcon = (Button) findViewById(R.id.helpIcon);
+        helpIcon.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+            	// prepare the alert box
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(GroupSettings.this);
+                // set the message to display
+                alertbox.setMessage("Add new members to your group by entering their name and clicking 'Invite'");
+	            // show it
+                alertbox.show();
+
             }
         });
         
