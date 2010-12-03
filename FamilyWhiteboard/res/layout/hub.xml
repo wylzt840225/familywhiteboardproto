@@ -5,7 +5,7 @@
  xmlns:android="http://schemas.android.com/apk/res/android"
  android:orientation="vertical"
  android:background="#fff">
- <LinearLayout android:id="@+id/LinearLayout02"
+ <RelativeLayout android:id="@+id/LinearLayout02"
  android:layout_width="wrap_content"
  android:layout_height="wrap_content"
  xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,29 +13,45 @@
 <Button
 	 android:id="@+id/Settings"
      android:layout_height="wrap_content"
-     android:layout_width="fill_parent"
-     android:text="Settings" />
+     android:text="Settings" 
+     android:layout_width="100px"
+	android:drawableTop="@drawable/settings"
+	android:textSize="12px"
+	android:layout_alignParentLeft="true"
+     />
 <Button
 	 android:id="@+id/LogOut"
      android:layout_height="wrap_content"
-     android:layout_width="fill_parent"
-     android:text="Logout" />
+     android:layout_width="100px"
+     android:text="Logout" 
+     android:layout_toRightOf="@+id/Settings"
+     android:layout_marginLeft="20px"
+     android:drawableTop="@drawable/logout"
+     android:textSize="12px"/>
 <Button
 	android:id="@+id/ScrollUp"
 	android:layout_height="wrap_content"
-	android:layout_width="fill_parent"
-	android:text="Scroll Up" />
+	android:layout_width="100px"
+	android:text="Scroll Up" 
+	android:layout_toLeftOf="@+id/ScrollDown"
+     android:layout_marginRight="20px"
+     android:drawableTop="@drawable/up"
+     android:textSize="12px"/>
 <Button
 	android:id="@+id/ScrollDown"
 	android:layout_height="wrap_content"
-	android:layout_width="fill_parent"
-	android:text="Scroll Down" />
-</LinearLayout>
+	android:layout_width="100px"
+	android:drawableTop="@drawable/down"
+	android:textSize="12px"
+	android:text="Scroll Down"
+	android:layout_alignParentRight="true" />
+</RelativeLayout>
  <Button
 	 android:id="@+id/createThread"
      android:layout_height="wrap_content"
      android:layout_width="fill_parent"
      android:text="Make a Post!"
+     android:textSize="20px"
      android:onClick="createThread" />
 
 	<ListView android:id="@+id/ListView01"
