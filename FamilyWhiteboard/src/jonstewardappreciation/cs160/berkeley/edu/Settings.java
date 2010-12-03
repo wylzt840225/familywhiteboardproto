@@ -1,6 +1,8 @@
 package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -76,6 +78,20 @@ public class Settings extends Activity {
             public void onClick(View v) {
             	if(DEBUG) Toast.makeText(Settings.this, "cancelIcon", Toast.LENGTH_SHORT).show();
             	finish();
+            }
+        });
+        
+        // Help
+        final Button helpIcon = (Button) findViewById(R.id.helpIcon);
+        helpIcon.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+            	// prepare the alert box
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(Settings.this);
+                // set the message to display
+                alertbox.setMessage("Create a new group to interact with by clicking 'Create a new group'");
+	            // show it
+                alertbox.show();
+
             }
         });
         
