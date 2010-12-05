@@ -3,8 +3,10 @@ package jonstewardappreciation.cs160.berkeley.edu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -26,6 +28,28 @@ public class AddComment extends Activity {
 	TextView tv_gpsloc;
 	EditText msgbox;
 	boolean first = true;
+	
+	private void refreshThreadList(DBAdapter1 db) {
+		Hub.comments.clear();
+		Cursor c = db.getAllPosts();
+		startManagingCursor(c); 
+		while (c.moveToNext()) {  
+			String title = c.getString(c.getColumnIndex("title"));
+			String content = c.getString(c.getColumnIndex("content"));
+			int priority = c.getInt(c.getColumnIndex("priority"));
+			String author = c.getString(c.getColumnIndex("author"));
+			Log.w("Post", title + " " + content + " " + priority + " " + author);
+			Hub.comments.add(new Comment(author, title, priority));
+		}	
+	//Close the database
+		db.close();
+	}
+	
+	public void addPost(String title, String content, int pri, String author) {
+		DBAdapter1 db1 = FamilyWhiteboard.db.open();
+		db1.insertPost(title, "content", 1, author);
+		refreshThreadList(db1);
+	}
 	
     /** Called when the activity is first created. */
     @Override
@@ -70,7 +94,8 @@ public class AddComment extends Activity {
 				if (addingName.length()<=5){
 					addingName = "Previous User";
 				}
-				Hub.comments.add(0, new Comment(addingName,commentText,commentPriority));
+				addPost(commentText, "content", commentPriority, addingName);
+				//Hub.comments.add(0, new Comment(addingName,commentText,commentPriority));
 				setResult(RESULT_OK);
                 finish();
 			}

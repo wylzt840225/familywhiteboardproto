@@ -26,9 +26,8 @@ public class Hub extends Activity {
 	protected static ListView lv1;
 	protected static ArrayList<Comment> comments = new ArrayList();
 	private Context v;
-	private boolean firstTime = true;
 
-	private void maybeAddFakeComments() {
+	private void loadThreads() {
 		
 	/** 
 	 * 
@@ -37,47 +36,47 @@ public class Hub extends Activity {
 	 * **/
 	//Open the database 
 		DBAdapter1 db1 = FamilyWhiteboard.db.open();
-	//Insert a post (String title, String content, int priority, String author)
-		db1.insertPost("title1", "content1", 1, "simran");
-		db1.insertPost("title2", "content2", 1, "someoneElse");
+//	//Insert a post (String title, String content, int priority, String author)
+//		db1.insertPost("title1", "content1", 1, "simran");
+//		db1.insertPost("title2", "content2", 1, "someoneElse");
+		//db1.deleteAllPosts();
+		
+		// This is a really stupid way of doing this, but whatever.
+		db1.deletePost("Hey", "John");
+		db1.deletePost("Test Thread", "Steven");
+		db1.deletePost("Emergency", "Alex");
+		db1.deletePost("Hi", "Courtney");
+		db1.deletePost("Sup", "Simi");
+		 
+		db1.insertPost("Hey", "content", 1, "John");
+		db1.insertPost("Test Thread", "content", 2, "Steven");
+		db1.insertPost("Emergency", "content", 3, "Alex");
+		db1.insertPost("Hi", "content", 2, "Courtney");
+		db1.insertPost("Sup", "content", 1, "Simi");
 	//Get all posts
+		Log.w("Clear", "Clearing comments");
+		comments.clear();
 		Cursor c = db1.getAllPosts();
-		startManagingCursor(c);
-		while (c.moveToNext()) {   
+		startManagingCursor(c); 
+		while (c.moveToNext()) {  
 			String title = c.getString(c.getColumnIndex("title"));
 			String content = c.getString(c.getColumnIndex("content"));
 			int priority = c.getInt(c.getColumnIndex("priority"));
 			String author = c.getString(c.getColumnIndex("author"));
 			Log.w("Post", title + " " + content + " " + priority + " " + author);
+			comments.add(new Comment(author, title, priority));
 		}	
 	//Close the database
 		db1.close();
 		
-		
-		
-		if (firstTime) {
-			// ok...these fake comment threads were being duplicated after
-			// logging out
-			// then logging back in. this fixes that.
-			if (comments.size() >= 5) {
-				for (int i = 0; i < 5; i++) {
-					comments.remove(comments.size() - 1);
-				}
-			}
-			comments.add(new Comment("John", "Hey", 1));
-			comments.add(new Comment("Steven", "Test Thread", 2));
-			comments.add(new Comment("Alex", "Emergency", 3));
-			comments.add(new Comment("Courtney", "Hi", 2));
-			comments.add(new Comment("Simi", "Sup", 1));
-		}
-		firstTime = false;
 	}
-
+	
+	
 	@Override
 	public void onCreate(Bundle icicle) {
 		v = this;
 
-		maybeAddFakeComments();
+		loadThreads();
 		super.onCreate(icicle);
 		setContentView(R.layout.hub);
 		lv1 = (ListView) findViewById(R.id.ListView01);
@@ -98,6 +97,7 @@ public class Hub extends Activity {
 		down.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// scroll up
+				
 				int newY = lv1.getScrollY() + 50;
 				newY = newY <= lv1.getBottom() ? newY : lv1.getBottom();
 				lv1.scrollTo(0, newY);
