@@ -5,9 +5,19 @@ public class Comment {
 	String comment;
 	int priority;
 	Comment next;
+	int id;
 	
 	public Comment(String name, String comment, int priority)
 	{
+		this.name = name;
+		this.comment = comment;
+		this.priority = priority;
+		this.next = null;
+	}
+	
+	public Comment(int id, String name, String comment, int priority)
+	{
+		this.id = id;
 		this.name = name;
 		this.comment = comment;
 		this.priority = priority;

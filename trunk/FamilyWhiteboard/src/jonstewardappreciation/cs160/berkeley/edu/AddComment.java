@@ -3,6 +3,7 @@ package jonstewardappreciation.cs160.berkeley.edu;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -28,6 +29,7 @@ public class AddComment extends Activity {
 	TextView tv_gpsloc;
 	EditText msgbox;
 	boolean first = true;
+	int topic;
 	
 	private void refreshThreadList(DBAdapter1 db) {
 		Hub.comments.clear();
@@ -45,9 +47,24 @@ public class AddComment extends Activity {
 		db.close();
 	}
 	
+	
+	
 	public void addPost(String title, String content, int pri, String author) {
 		DBAdapter1 db1 = FamilyWhiteboard.db.open();
-		db1.insertPost(title, "content", 1, author);
+		if (this.topic == 0)
+		{
+			db1.insertPost(title, content, 1, author);
+		}
+		else
+		{
+			db1.insertPost(title, content, 1, author, this.topic);
+		}
+		refreshThreadList(db1);
+	}
+	
+	public void addTopic(String title, String content, int pri, String author, int parent) {
+		DBAdapter1 db1 = FamilyWhiteboard.db.open();
+		db1.insertPost(title, content, 1, author, parent);
 		refreshThreadList(db1);
 	}
 	
@@ -56,6 +73,12 @@ public class AddComment extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addingcomment);
+        
+		SharedPreferences settings = getSharedPreferences(Settings.PREFS_NAME, 0);
+        String curUserName = settings.getString("username", "");
+        
+        topic = this.getIntent().getIntExtra("topic", 0);
+        
         submit = (Button) findViewById(R.id.submit);
         rg_priority = (RadioGroup) findViewById(R.id.rg_pri);
         tv_addgps = (TextView) findViewById(R.id.tv_addgps);
@@ -66,7 +89,7 @@ public class AddComment extends Activity {
         msgbox	  = (EditText) findViewById(R.id.msgbox);
         msgbox.clearFocus();
         TextView username = (TextView) findViewById(R.id.username);
-        username.setText(SignUp.curUserName);
+        username.setText(curUserName);
         msgbox.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if(first) {
@@ -94,7 +117,7 @@ public class AddComment extends Activity {
 				if (addingName.length()<=5){
 					addingName = "Previous User";
 				}
-				addPost(commentText, "content", commentPriority, addingName);
+				addPost(commentText, commentText, commentPriority, addingName);
 				//Hub.comments.add(0, new Comment(addingName,commentText,commentPriority));
 				setResult(RESULT_OK);
                 finish();

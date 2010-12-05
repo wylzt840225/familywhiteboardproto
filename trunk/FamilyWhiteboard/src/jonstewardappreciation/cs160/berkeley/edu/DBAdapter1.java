@@ -12,23 +12,25 @@ public class DBAdapter1
 {
 	public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_TIME_CREATED = "time_created";
     public static final String KEY_TITLE = "title";
     public static final String KEY_CONTENT = "content";
     public static final String KEY_PRIORITY = "priority";
+    public static final String KEY_PARENT = "parent";
     public static final String KEY_AUTHOR = "author";
     private static final String TAG = "DBAdapter1";
     
     private static final String DATABASE_NAME = "familywb";
     private static final String DATABASE_TABLE_USERS = "users";
     private static final String DATABASE_TABLE_POSTS = "myposts";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4; 
 
     private static final String DATABASE_CREATE_USERS =
         "create table users ("
         + "username text primary key not null, password text not null);";
     private static final String DATABASE_CREATE_POSTS =
         "create table myposts ("
-        + "title text primary key not null, content text, priority int, author text);";
+        + "id integer primary key autoincrement not null, parent int, title text, time_created int, content text, priority int, author text);";
     
     private final Context context; 
     
@@ -92,12 +94,30 @@ public class DBAdapter1
         return db.insert(DATABASE_TABLE_USERS, null, initialValues);
     }
     
+    public long insertPost(String title, String content, int priority, String author, int parent)
+    {
+    	int time = Math.round(System.currentTimeMillis()/ 1000);
+    	Log.w(TAG, "insertPost " + DATABASE_NAME + " " + title + " " + content + " " + priority + " " + author);
+    	ContentValues initialValues = new ContentValues();
+
+    	initialValues.put(KEY_TITLE, title);
+        initialValues.put(KEY_TIME_CREATED, time);
+        initialValues.put(KEY_CONTENT, content);
+        initialValues.put(KEY_PRIORITY, priority);
+        initialValues.put(KEY_AUTHOR, author);
+        initialValues.put(KEY_PARENT, parent);
+        return db.insert(DATABASE_TABLE_POSTS, null, initialValues);
+    }
+    
   //---insert a post into the database---
     public long insertPost(String title, String content, int priority, String author) 
     {
+    	int time = Math.round(System.currentTimeMillis()/ 1000);
     	Log.w(TAG, "insertPost " + DATABASE_NAME + " " + title + " " + content + " " + priority + " " + author);
     	ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_TITLE, title);
+
+    	initialValues.put(KEY_TITLE, title);
+        initialValues.put(KEY_TIME_CREATED, time);
         initialValues.put(KEY_CONTENT, content);
         initialValues.put(KEY_PRIORITY, priority);
         initialValues.put(KEY_AUTHOR, author);
@@ -147,12 +167,27 @@ public class DBAdapter1
                 null);
     }
 
+    //---retrieves all the topics---
+    public Cursor getAllTopics() 
+    {
+    	Log.w(TAG, "getAllTopics " + DATABASE_NAME);
+    	return db.query(DATABASE_TABLE_POSTS, null, KEY_PARENT + " is null", null, null, null, KEY_TIME_CREATED + " DESC");
+    }
+    
   //---retrieves all the posts---
     public Cursor getAllPosts() 
     {
     	Log.w(TAG, "getAllPosts " + DATABASE_NAME);
-    	return db.query(DATABASE_TABLE_POSTS, null, null, null, null, null, null);
+    	return db.query(DATABASE_TABLE_POSTS, null, null, null, null, null, KEY_TIME_CREATED + " DESC");
     }
+    
+    //---retrieves all the posts for a topic---//
+    public Cursor getAllPosts(int topic) 
+    {
+    	Log.w(TAG, "getAllPosts " + DATABASE_NAME);
+    	return db.query(DATABASE_TABLE_POSTS, null, KEY_PARENT + "='" + Integer.toString(topic) + "' OR id="+topic, null, null, null, KEY_TIME_CREATED + " DESC");
+    }
+    
 
     //---retrieves a particular user---
     public Cursor getUser(String username)  
