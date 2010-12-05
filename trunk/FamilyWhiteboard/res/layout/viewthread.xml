@@ -15,7 +15,6 @@
      android:layout_height="wrap_content"
      android:text="Back" 
      android:layout_width="100px"
-	android:drawableTop="@drawable/back"
 	android:textSize="12px"
 	android:layout_alignParentLeft="true"
      />
