@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,33 +26,59 @@ import android.view.View.OnClickListener;
 public class ViewThread extends Activity
 {
 	private ListView lv1;
-	private ArrayList<Comment> comments= new ArrayList();
+	private ArrayList<Comment> comments= new ArrayList<Comment>();
 	private Context v;
-	private boolean firstTime = true;
-	
-	private void maybeAddFakePosts() {
-		if(firstTime) {
-			Comment c = new Comment("John", "First topic", 1);
-			c.linkComment(new Comment("Steven", "Here is a reply", 2));
-			c.linkComment(new Comment("Alex", "Another Reply", 3));
-			c.linkComment(new Comment("Courtney", "And another..", 2));
-			c.linkComment(new Comment("Simi", "Last Reply", 1));
+	private int topic; 
+		
+	private void loadThreads(int parent) {
+		
+		/** 
+		 * 
+		 * Database 
+		 * 
+		 * **/
+		//Open the database 
+			DBAdapter1 db1 = FamilyWhiteboard.db.open();
+//		//Insert a post (String title, String content, int priority, String author)
+//			db1.insertPost("title1", "content1", 1, "simran");
+//			db1.insertPost("title2", "content2", 1, "someoneElse");
+			//db1.deleteAllPosts();
 			
-			comments.add(c);
-			while (c.next != null)
-			{
-				comments.add(c.next);
-				c = c.next;
-			}
+		//Get all posts
+			Log.w("Clear", "Clearing comments");
+			comments.clear();
+			Cursor c = db1.getAllPosts(parent);
+			startManagingCursor(c); 
+			while (c.moveToNext()) {
+				int id = c.getInt(c.getColumnIndex("id"));
+				String title = c.getString(c.getColumnIndex("title"));
+				String content = c.getString(c.getColumnIndex("content"));
+				int priority = c.getInt(c.getColumnIndex("priority"));
+				String author = c.getString(c.getColumnIndex("author"));
+				Log.w("Post", "" + id + " " + title + " " + content + " " + priority + " " + author);
+				comments.add(new Comment(id, author, title, priority));
+			}	
+		//Close the database
+			db1.close();
+			
 		}
-		firstTime = false;
+	
+	public int getTopic()
+	{
+		return this.topic;
 	}
+	
 	@Override
 	public void onCreate(Bundle icicle)
 	{
 		v = this;
-		
-		maybeAddFakePosts();
+        topic = this.getIntent().getIntExtra("topic", 0);
+		if (topic == 0)
+		{
+			finish();
+		}
+		loadThreads(topic);
+		//maybeAddFakePosts();
 		
 		super.onCreate(icicle);
 		setContentView(R.layout.viewthread);
@@ -61,9 +89,11 @@ public class ViewThread extends Activity
 
 		Button closeButton = (Button)this.findViewById(R.id.addComment2);
 		closeButton.setOnClickListener(new OnClickListener() {
+			int topic = getTopic();
 		    @Override
 		    public void onClick(View vi) {
 				 Intent myIntent = new Intent(v, AddComment.class);
+				 myIntent.putExtra("topic", topic);
 		         startActivityForResult(myIntent, 0);
 		    }
 		  });

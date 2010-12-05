@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -39,32 +40,32 @@ public class Hub extends Activity {
 //	//Insert a post (String title, String content, int priority, String author)
 //		db1.insertPost("title1", "content1", 1, "simran");
 //		db1.insertPost("title2", "content2", 1, "someoneElse");
-		//db1.deleteAllPosts();
 		
 		// This is a really stupid way of doing this, but whatever.
-		db1.deletePost("Hey", "John");
-		db1.deletePost("Test Thread", "Steven");
-		db1.deletePost("Emergency", "Alex");
-		db1.deletePost("Hi", "Courtney");
-		db1.deletePost("Sup", "Simi");
+		if (db1.getAllTopics().moveToFirst() == false)
+		{
+			long id = db1.insertPost("Hey", "content", 1, "John");
+			
+			
+			db1.insertPost("Test Thread", "content", 2, "Steven");
+			db1.insertPost("Emergency", "content", 3, "Alex");
+			db1.insertPost("Hi", "content", 2, "Courtney");
+			db1.insertPost("Sup", "content", 1, "Simi");
+		}
 		 
-		db1.insertPost("Hey", "content", 1, "John");
-		db1.insertPost("Test Thread", "content", 2, "Steven");
-		db1.insertPost("Emergency", "content", 3, "Alex");
-		db1.insertPost("Hi", "content", 2, "Courtney");
-		db1.insertPost("Sup", "content", 1, "Simi");
 	//Get all posts
 		Log.w("Clear", "Clearing comments");
 		comments.clear();
-		Cursor c = db1.getAllPosts();
+		Cursor c = db1.getAllTopics();
 		startManagingCursor(c); 
-		while (c.moveToNext()) {  
+		while (c.moveToNext()) {
+			int id = c.getInt(c.getColumnIndex("id"));
 			String title = c.getString(c.getColumnIndex("title"));
 			String content = c.getString(c.getColumnIndex("content"));
 			int priority = c.getInt(c.getColumnIndex("priority"));
 			String author = c.getString(c.getColumnIndex("author"));
-			Log.w("Post", title + " " + content + " " + priority + " " + author);
-			comments.add(new Comment(author, title, priority));
+			Log.w("Post", "" + id + " " + title + " " + content + " " + priority + " " + author);
+			comments.add(new Comment(id, author, title, priority));
 		}	
 	//Close the database
 		db1.close();
@@ -88,7 +89,11 @@ public class Hub extends Activity {
 		lv1.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				SharedPreferences settings = getSharedPreferences(Settings.PREFS_NAME, 0);
+   			 	SharedPreferences.Editor editor = settings.edit();
+             	//editor.putInt("topic", comments.get(position).id);
 				Intent myIntent = new Intent(v, ViewThread.class);
+				myIntent.putExtra("topic", comments.get(position).id);
 				startActivityForResult(myIntent, 0);
 			}
 		});
