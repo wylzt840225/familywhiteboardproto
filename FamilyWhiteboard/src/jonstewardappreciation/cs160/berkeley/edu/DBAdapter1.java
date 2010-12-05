@@ -111,6 +111,12 @@ public class DBAdapter1
     	return db.delete(DATABASE_TABLE_USERS, KEY_USERNAME + 
         		"=" + username, null) > 0;
     }
+    
+    //---drop myposts---
+    public void deleteAllPosts() {
+    	Log.w(TAG, "deleting all posts");
+    	db.execSQL("DELETE FROM "+DATABASE_TABLE_POSTS + " WHERE 1=1");
+    }
 
     //---deletes a particular post---
     public boolean deletePost(String title) 
@@ -118,6 +124,13 @@ public class DBAdapter1
     	Log.w(TAG, "deletePost " + DATABASE_NAME);
     	return db.delete(DATABASE_TABLE_POSTS, KEY_TITLE + 
         		"=" + title, null) > 0;
+    }
+    //---delete post by author---
+    public boolean deletePost(String title, String author) 
+    {
+    	Log.w(TAG, "deletePostByUser " + DATABASE_NAME);
+    	return db.delete(DATABASE_TABLE_POSTS, KEY_TITLE + 
+        		"='" + title +"' AND " + KEY_AUTHOR + "='" + author+ "'", null) > 0;
     }
 
     //---retrieves all the users---
