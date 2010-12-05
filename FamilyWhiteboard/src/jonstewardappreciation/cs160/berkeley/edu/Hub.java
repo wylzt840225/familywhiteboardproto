@@ -59,7 +59,7 @@ public class Hub extends Activity {
 			// ok...these fake comment threads were being duplicated after
 			// logging out
 			// then logging back in. this fixes that.
-			if (comments.size() > 5) {
+			if (comments.size() >= 5) {
 				for (int i = 0; i < 5; i++) {
 					comments.remove(comments.size() - 1);
 				}
