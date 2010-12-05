@@ -39,6 +39,7 @@ public class SignUp extends Activity {
 		private Cursor c;
     	public void onClick(View v)
 		{
+    		 
     		 String usename = username.getText().toString();
     		 String pswd = password.getText().toString();
     		 if (usename.length() >= 1 &&  pswd.length() >= 1){
@@ -55,26 +56,21 @@ public class SignUp extends Activity {
 	    		 
 	    		 //Store new user information in the database
 	    		 db1 = FamilyWhiteboard.db.open();
-	    		 c = db1.getAllUsers();
-	    		 if(c.moveToFirst()) {
-	    			 while(c.moveToNext()) {
-		    			String correctPassword = c.getString(c.getColumnIndex("password"));
-		    			if(pswd.equals(correctPassword)) {
-		    				Log.w("Authentication successful", usename + " " + pswd + " " + correctPassword);
-		    				break;
-		    			}
-		    			else Toast.makeText(getBaseContext(), "Incorrect password! Please try again.", Toast.LENGTH_LONG).show();
-		    		 }
+	    		 c = db1.getUser(usename);
+	    		 if (c.moveToFirst())
+	    		 {
+	    			 Log.w("Signing Up", "Duplicate User");
+	    			 Toast.makeText(getBaseContext(), "Someone already has this name.", Toast.LENGTH_LONG).show();
 	    		 }
 	    		 else {
 	    			 db1.insertUser(usename, pswd);
 	    			 Log.w("New user created", usename + " " + pswd);
+		    		 //Start activity
+		             startActivityForResult(myIntent, 0);
+		             finish();
 	    		 }
+	    		 Log.w("Signing Up", "Signing Up");
 	    		 db1.close();
-	    		 
-	    		 //Start activity
-	             startActivityForResult(myIntent, 0);
-	             finish();
     		 }else{
     			 if (usename.length() < 1){
     			 errorToast = Toast.makeText(getBaseContext(), "Please enter a username of at least 6 characters!", Toast.LENGTH_LONG);

@@ -160,7 +160,26 @@ public class DBAdapter1
     	Log.w(TAG, "getUser " + DATABASE_NAME);
     	Cursor mCursor =
                 db.query(true, DATABASE_TABLE_USERS, new String[] {KEY_USERNAME, KEY_PASSWORD}, 
-                		KEY_USERNAME + "=" + username, 
+                		KEY_USERNAME + "='" + username + "'", 
+                		null,
+                		null, 
+                		null, 
+                		null, 
+                		null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+    //---retrieves a user with a password---//
+    //---retrieves a particular user---
+    public Cursor userLogin(String username, String password)  
+    {
+    	Log.w(TAG, "userLogin " + DATABASE_NAME);
+    	Cursor mCursor =
+                db.query(true, DATABASE_TABLE_USERS, new String[] {KEY_USERNAME, KEY_PASSWORD}, 
+                		KEY_USERNAME + "='" + username + "' AND " + KEY_PASSWORD + "='" + password + "'", 
                 		null,
                 		null, 
                 		null, 
