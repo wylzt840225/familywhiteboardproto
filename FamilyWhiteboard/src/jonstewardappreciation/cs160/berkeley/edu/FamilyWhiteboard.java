@@ -1,6 +1,7 @@
 package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;

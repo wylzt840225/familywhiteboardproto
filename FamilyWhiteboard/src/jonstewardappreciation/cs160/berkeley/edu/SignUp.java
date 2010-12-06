@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class SignUp extends Activity {
 	EditText username;
 	EditText password;

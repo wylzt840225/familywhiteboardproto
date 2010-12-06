@@ -2,7 +2,7 @@ package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+//import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
