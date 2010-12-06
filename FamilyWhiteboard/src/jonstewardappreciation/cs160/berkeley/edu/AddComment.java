@@ -114,7 +114,7 @@ public class AddComment extends Activity {
 				if (priority.isChecked()){ commentPriority = 3;}
 				commentText = msgbox.getText().toString();
 				addingName = SignUp.curUserName;
-				if (addingName.length()<=5){
+				if (addingName.length()<=2){
 					addingName = "Previous User";
 				}
 				addPost(commentText, commentText, commentPriority, addingName);
