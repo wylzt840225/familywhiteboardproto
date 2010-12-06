@@ -26,7 +26,7 @@ import android.view.View.OnClickListener;
 public class ViewThread extends Activity
 {
 	private ListView lv1;
-	private ArrayList<Comment> comments= new ArrayList<Comment>();
+	static ArrayList<Comment> comments= new ArrayList<Comment>();
 	private Context v;
 	private int topic; 
 		
