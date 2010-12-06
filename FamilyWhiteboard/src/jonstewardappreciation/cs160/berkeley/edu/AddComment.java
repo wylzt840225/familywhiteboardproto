@@ -113,7 +113,11 @@ public class AddComment extends Activity {
 				priority = (RadioButton) findViewById(R.id.highpri);
 				if (priority.isChecked()){ commentPriority = 3;}
 				commentText = msgbox.getText().toString();
-				addingName = SignUp.curUserName;
+
+				SharedPreferences settings = getSharedPreferences(Settings.PREFS_NAME, 0);
+		        String curUserName = settings.getString("username", "");
+		        
+				addingName = curUserName;
 				if (addingName.length()<=2){
 					addingName = "Previous User";
 				}
