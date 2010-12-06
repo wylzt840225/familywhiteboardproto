@@ -39,34 +39,47 @@ public class AddComment extends Activity {
 			String title = c.getString(c.getColumnIndex("title"));
 			String content = c.getString(c.getColumnIndex("content"));
 			int priority = c.getInt(c.getColumnIndex("priority"));
+			int id = c.getInt(c.getColumnIndex("id")); 
 			String author = c.getString(c.getColumnIndex("author"));
 			Log.w("Post", title + " " + content + " " + priority + " " + author);
-			Hub.comments.add(new Comment(author, title, priority));
+			Hub.comments.add(new Comment(id, author, title, priority));
 		}	
 	//Close the database
 		db.close();
 	}
 	
-	
+	private void refreshThreadList(DBAdapter1 db, int parent) {
+		ViewThread.comments.clear();
+		Cursor c = db.getAllPosts(parent);
+		startManagingCursor(c); 
+		while (c.moveToNext()) {  
+			String title = c.getString(c.getColumnIndex("title"));
+			String content = c.getString(c.getColumnIndex("content"));
+			int priority = c.getInt(c.getColumnIndex("priority"));
+			int id = c.getInt(c.getColumnIndex("id")); 
+			String author = c.getString(c.getColumnIndex("author"));
+			Log.w("Post", title + " " + content + " " + priority + " " + author);
+			ViewThread.comments.add(new Comment(id, author, title, priority));
+		}	
+	//Close the database
+		db.close();
+	}
 	
 	public void addPost(String title, String content, int pri, String author) {
 		DBAdapter1 db1 = FamilyWhiteboard.db.open();
 		if (this.topic == 0)
 		{
 			db1.insertPost(title, content, 1, author);
+			refreshThreadList(db1);
 		}
 		else
 		{
 			db1.insertPost(title, content, 1, author, this.topic);
+			refreshThreadList(db1, this.topic);
 		}
-		refreshThreadList(db1);
+		
 	}
 	
-	public void addTopic(String title, String content, int pri, String author, int parent) {
-		DBAdapter1 db1 = FamilyWhiteboard.db.open();
-		db1.insertPost(title, content, 1, author, parent);
-		refreshThreadList(db1);
-	}
 	
     /** Called when the activity is first created. */
     @Override
