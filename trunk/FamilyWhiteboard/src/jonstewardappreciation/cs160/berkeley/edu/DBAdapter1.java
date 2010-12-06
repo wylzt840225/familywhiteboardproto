@@ -171,14 +171,14 @@ public class DBAdapter1
     public Cursor getAllTopics() 
     {
     	Log.w(TAG, "getAllTopics " + DATABASE_NAME);
-    	return db.query(DATABASE_TABLE_POSTS, null, KEY_PARENT + " is null", null, null, null, KEY_TIME_CREATED + " DESC");
+    	return db.query(DATABASE_TABLE_POSTS, null, KEY_PARENT + " is null", null, null, null, "id DESC");
     }
     
   //---retrieves all the posts---
     public Cursor getAllPosts() 
     {
     	Log.w(TAG, "getAllPosts " + DATABASE_NAME);
-    	return db.query(DATABASE_TABLE_POSTS, null, null, null, null, null, KEY_TIME_CREATED + " DESC");
+    	return db.query(DATABASE_TABLE_POSTS, null, null, null, null, null, "id DESC");
     }
     
     //---retrieves all the posts for a topic---//
