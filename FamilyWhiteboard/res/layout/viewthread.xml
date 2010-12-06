@@ -9,7 +9,8 @@
  android:layout_width="wrap_content"
  android:layout_height="wrap_content"
  xmlns:android="http://schemas.android.com/apk/res/android"
- android:background="#fff">
+ android:background="#fff"
+ android:cacheColorHint="#00000000">
 <Button
 	 android:id="@+id/BackButton"
      android:layout_height="wrap_content"
