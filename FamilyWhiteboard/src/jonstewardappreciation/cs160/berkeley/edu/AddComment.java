@@ -69,12 +69,12 @@ public class AddComment extends Activity {
 		DBAdapter1 db1 = FamilyWhiteboard.db.open();
 		if (this.topic == 0)
 		{
-			db1.insertPost(title, content, 1, author);
+			db1.insertPost(title, content, pri, author);
 			refreshThreadList(db1);
 		}
 		else
 		{
-			db1.insertPost(title, content, 1, author, this.topic);
+			db1.insertPost(title, content, pri, author, this.topic);
 			refreshThreadList(db1, this.topic);
 		}
 		
@@ -101,6 +101,13 @@ public class AddComment extends Activity {
         tv_gpsloc = (TextView) findViewById(R.id.tv_gpsloc);
         msgbox	  = (EditText) findViewById(R.id.msgbox);
         msgbox.clearFocus();
+        
+        if (this.topic != 0)
+        {
+        	findViewById(R.id.pri).setVisibility(View.GONE);
+        	findViewById(R.id.rg_pri).setVisibility(View.GONE);
+        }
+        
         TextView username = (TextView) findViewById(R.id.username);
         username.setText(curUserName);
         msgbox.setOnClickListener(new View.OnClickListener() {
