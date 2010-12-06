@@ -7,6 +7,7 @@ public class Comment {
 	Comment next;
 	int id;
 	
+	
 	public Comment(String name, String comment, int priority)
 	{
 		this.name = name;

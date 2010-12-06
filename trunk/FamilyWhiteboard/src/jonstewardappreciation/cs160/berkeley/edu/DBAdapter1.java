@@ -96,7 +96,7 @@ public class DBAdapter1
     
     public long insertPost(String title, String content, int priority, String author, int parent)
     {
-    	int time = Math.round(System.currentTimeMillis()/ 1000);
+    	int time = (int) Math.round(System.currentTimeMillis()/ 1000.0);
     	Log.w(TAG, "insertPost " + DATABASE_NAME + " " + title + " " + content + " " + priority + " " + author);
     	ContentValues initialValues = new ContentValues();
 
@@ -112,7 +112,7 @@ public class DBAdapter1
   //---insert a post into the database---
     public long insertPost(String title, String content, int priority, String author) 
     {
-    	int time = Math.round(System.currentTimeMillis()/ 1000);
+    	int time = (int) Math.round(System.currentTimeMillis()/ 1000.0);
     	Log.w(TAG, "insertPost " + DATABASE_NAME + " " + title + " " + content + " " + priority + " " + author);
     	ContentValues initialValues = new ContentValues();
 

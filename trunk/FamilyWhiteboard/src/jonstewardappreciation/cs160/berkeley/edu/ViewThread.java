@@ -3,7 +3,7 @@ package jonstewardappreciation.cs160.berkeley.edu;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.ListActivity;
+//import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;

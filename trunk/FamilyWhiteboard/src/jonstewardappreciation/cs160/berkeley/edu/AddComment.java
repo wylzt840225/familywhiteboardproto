@@ -1,7 +1,7 @@
 package jonstewardappreciation.cs160.berkeley.edu;
 
 import android.app.Activity;
-import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;

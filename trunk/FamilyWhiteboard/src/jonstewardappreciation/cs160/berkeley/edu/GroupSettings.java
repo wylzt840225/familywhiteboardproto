@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class GroupSettings extends Activity {
 	EditText groupEdit;
 	public static String groupName = "";
